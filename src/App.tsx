@@ -1,20 +1,21 @@
+import BoardButton from "./components/boardButton.component";
 import { useTicTacToe } from "./hooks/useTicTacToe.hook";
 
 export default function App() {
-    const { board, selectField } = useTicTacToe();
+    const { board, selectField, turn } = useTicTacToe();
 
     return (
         <main className="w-screen h-screen flex flex-col items-center justify-center">
             <section className="grid grid-cols-3 grid-rows-3 gap-2">
                 {
                     board.map((item, index) => (
-                        <button 
-                            key={index}
-                            className="w-20 h-20 bg-red-400 grid place-items-center"
+                        <BoardButton 
+                            key={index} 
                             onClick={() => selectField(index)}
+                            turn={turn}
                         >
                             {item}
-                        </button>
+                        </BoardButton>
                     ))
                 }
             </section>
