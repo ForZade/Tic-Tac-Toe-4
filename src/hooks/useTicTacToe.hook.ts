@@ -48,6 +48,7 @@ export function useTicTacToe() {
         turn,
         winner,
         board,
+        moves,
         selectField,
     }
 }

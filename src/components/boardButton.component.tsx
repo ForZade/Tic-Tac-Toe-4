@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react';
 
-export default function BoardButton({ onClick, children, turn }: { onClick: () => void, children: React.ReactNode, turn: string }) {
+export default function BoardButton({ onClick, children, turn, disabled }: { onClick: () => void, children: React.ReactNode, turn: string, disabled: boolean }) {
     return (
         <button 
             className={`
@@ -9,6 +9,7 @@ export default function BoardButton({ onClick, children, turn }: { onClick: () =
                 ${!children && 'hover:bg-slate-400'}
             `}
             onClick={onClick}
+            disabled={disabled}
         >
             {
                 children === "X" ? <Icon icon="tabler:x" className="w-full h-full scale-80 text-white" />
