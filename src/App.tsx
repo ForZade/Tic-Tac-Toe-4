@@ -1,29 +1,15 @@
-import BoardButton from "./components/boardButton.component";
-import { useTicTacToe } from "./hooks/useTicTacToe.hook";
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import MainLayout from "./app/main.layout";
+import HomePage from "./app/home.page";
+import LobbyPage from "./app/Lobby/lobby.page";
 
 export default function App() {
-    const { board, selectField, turn, moves, winner } = useTicTacToe();
+    const router = createBrowserRouter(createRoutesFromElements(
+        <Route path="/" element={<MainLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="lobby/:code" element={<LobbyPage />} />
+        </Route>
+    ));
 
-    return (
-        <main className="w-screen h-screen flex flex-col items-center justify-center gap-16">
-            {
-                winner ? <h1 className="text-3xl"><span className="font-bold">{winner}</span>has won the game!</h1> :
-                <h1 className="text-3xl">Its <span className="font-bold">{turn}</span>'s turn</h1>
-            }
-            <section className="grid grid-cols-3 grid-rows-3 gap-2">
-                {
-                    board.map((item, index) => (
-                        <BoardButton 
-                            key={index} 
-                            onClick={() => selectField(index)}
-                            turn={turn}
-                            disabled={moves.includes(index)}
-                        >
-                            {item}
-                        </BoardButton>
-                    ))
-                }
-            </section>
-        </main>
-    )
+    return <RouterProvider router={router} />
 }

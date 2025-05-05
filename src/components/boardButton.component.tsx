@@ -1,6 +1,6 @@
 import { Icon } from '@iconify/react';
 
-export default function BoardButton({ onClick, children, turn, disabled }: { onClick: () => void, children: React.ReactNode, turn: string, disabled: boolean }) {
+export default function BoardButton({ onClick, children, turn, disabled }: { onClick: () => void, children: React.ReactNode, turn: string, disabled?: boolean }) {
     return (
         <button 
             className={`
